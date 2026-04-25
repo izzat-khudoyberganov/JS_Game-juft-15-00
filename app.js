@@ -11,36 +11,33 @@ function getRandomNumber(num) {
   return Math.round(Math.random() * num);
 }
 
+function setImageAttribute(random_num, img) {
+  if (random_num == 0) {
+    img.setAttribute("src", "./img/paper.png");
+  } else if (random_num == 1) {
+    img.setAttribute("src", "./img/rock.png");
+  } else {
+    img.setAttribute("src", "./img/scissors.png");
+  }
+}
+
 // btn elementiga hodisa qo'shish
 btn.addEventListener("click", () => {
   // tasodifiy sonlar generatsiya qilish
   const first_random_number = getRandomNumber(2);
   const second_random_number = getRandomNumber(2);
 
-  if (first_random_number == 0) {
-    first_player_img.setAttribute("src", "./img/paper.png");
-  } else if (first_random_number == 1) {
-    first_player_img.setAttribute("src", "./img/rock.png");
-  } else {
-    first_player_img.setAttribute("src", "./img/scissors.png");
-  }
+  //   birinchi o'yinchi uchun tasodifiy rasmlar
+  setImageAttribute(first_random_number, first_player_img);
+  // ikkinchi o'yinchi uchun tasodifiy rasmlar
+  setImageAttribute(second_random_number, second_player_img);
 
-  if (second_random_number == 0) {
-    second_player_img.setAttribute("src", "./img/paper.png");
-  } else if (second_random_number == 1) {
-    second_player_img.setAttribute("src", "./img/rock.png");
-  } else {
-    second_player_img.setAttribute("src", "./img/scissors.png");
-  }
-
-  //   birinchi o'yinchi yutadigan kombinatsiyalar
-  if (first_random_number == 0 && second_random_number == 1) {
-    result.textContent = "Siz yutdingiz!";
-    result.style.color = "green";
-  } else if (first_random_number == 1 && second_random_number == 2) {
-    result.textContent = "Siz yutdingiz!";
-    result.style.color = "green";
-  } else if (first_random_number == 2 && second_random_number == 0) {
+  // birinchi o'yinchi yutadigan kombinatsiyalar
+  if (
+    (first_random_number == 0 && second_random_number == 1) ||
+    (first_random_number == 1 && second_random_number == 2) ||
+    (first_random_number == 2 && second_random_number == 0)
+  ) {
     result.textContent = "Siz yutdingiz!";
     result.style.color = "green";
   }
